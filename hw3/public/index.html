@@ -1,0 +1,170 @@
+<!--
+    Author: Joseph Early
+    CS341A HW2
+    29 January 2026
+-->
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>CS341 Cheesecake Order Form</title>
+        <link rel="stylesheet" href="stylesheets/style.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <h1>Cheesecake Order Form</h1>
+
+        <img src="https://littlerock.com.mt/wp-content/uploads/2014/10/cheesecake.jpg" alt="Cheesecake" height = "200" width="200">
+        <br>
+
+
+        <div id="orderForm">
+
+            <!--Quantity and Topping Options-->
+            <table>
+                
+                <tr>
+                    <td>
+                        <label>Quantity</label>
+                    </td>
+                    
+                    <td>
+                        <label>Topping</label>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <!--Select Quantity-->
+                    <td>
+                        <select id="toppingQuantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option selected>3</option>
+                        </select>
+                    </td>
+                    
+                    <!--Select Topping-->
+                    <td>
+                        <input type="radio" name="toppingOption" value="Plain"> Plain <br>
+                        <input type="radio" name="toppingOption" value="Cherry"> Cherry <br>
+                        <input type="radio" name="toppingOption" value="Chocolate"> Chocolate <br>
+                    </td>
+                    
+                </tr>
+                
+            </table>
+            
+            
+            <!-- NOTES SECTION -->
+            <label>Notes:</label> <br>
+            <textarea id="orderNotes" rows="5" cols="45" placeholder="Enter any special instructions here"></textarea> <br>
+            
+            <!-- ORDER BUTTON -->
+            <br><button id="orderButton">Order</button><br>
+
+        </div>
+
+
+        <!-- Order Confirmed Message -->
+         <div id="confirmedOrderInfo">
+         </div>
+        
+
+        <!-- HOVER DROPDOWN SECTION -->
+
+
+        <h3> Orders for
+                <span id="dropdownMenu">
+                    <span id="selectedMonth">Jan</span>
+                        <ul id="monthDropdown">
+                            <li>Jan</li>
+                            <li>Feb</li>
+                            <li>Mar</li>
+                            <li>Apr</li>
+                            <li>May</li>
+                            <li>Jun</li>
+                            <li>Jul</li>
+                            <li>Aug</li>
+                            <li>Sep</li>
+                            <li>Oct</li>
+                            <li>Nov</li>
+                            <li>Dec</li>
+                        </ul>
+                </span>
+        </h3>
+
+
+
+        <!-- HW2 JS/JQuery Script -->
+         <script>
+
+            //Load the entire page first
+            $(document).ready(function(){
+
+                //Form Validation Function
+                $('#orderButton').click(function(){
+
+                    //Retrieve Order Info
+                    let orderNotes = $('#orderNotes').val();
+                    let quantity = $('#toppingQuantity').val();
+                    let orderToppings = $('input[name="toppingOption"]:checked').val();
+
+                    //Check for 'vegan' specified in notes (not case sensitive)
+                    if (orderNotes.toLowerCase().includes("vegan")) {
+                        alert("Cheesecake contains dairy.");
+                    }
+
+                    //Check for unclicked topping
+                    else if(orderToppings == undefined) {
+                        alert("No toppings selected");
+                    }
+
+                    //Place Order
+                    else {
+                        $('#orderForm').hide();
+                        $('#confirmedOrderInfo').show();
+
+                        //Display Confirmed Order Info
+                        $('#confirmedOrderInfo').html(`
+                            <h2>Thank you! Your order has been placed</h2>
+                            <ul>
+                                <li>Special Instructions: ${orderNotes}</li>
+                                <li>Quantity: ${quantity}</li>
+                                <li>Toppings: ${orderToppings} </li>
+                            </ul>
+                        `);
+                    }
+
+                });// ORDER FORM VALIDATION 
+                
+
+                //DROPDOWN MENU
+                $('#dropdownMenu').hover(
+
+                    //DISPLAY MENU
+                    function(){
+                        $('#monthDropdown').show();
+                    },
+
+                    //HIDE MENU
+                    function() {                          
+                        $('#monthDropdown').hide();
+                    }
+                );
+
+                //CHANGE SELECTED MONTH WHEN CLICKED
+                $('#monthDropdown li').click(function(){
+                    //Update text to selected month
+                    let selectedMonth = $(this).text();
+                    $('#selectedMonth').text(selectedMonth);
+                });
+                
+            });
+         </script>
+
+    </body>
+
+</html>

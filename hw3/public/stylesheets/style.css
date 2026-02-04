@@ -1,0 +1,90 @@
+
+/*
+    Author: Joseph Early
+    CS341A HW2
+    29 January 2025
+*/
+
+body {
+    font-family: cursive;
+    background-color: #f2e2ff;
+}
+
+h3 {
+    font-family: 'Times New Roman';
+}
+
+table {
+    background-color: #eeb5d7;
+    box-shadow:2px 2px 2px 2px #ddfffc;
+}
+
+img {
+    box-shadow:2px 2px 2px 2px #ddfffc;
+}
+
+#confirmedOrderInfo {
+    display: none; /* hide to prevent small styled box appearing before purchase is made */
+    background-color: #eeb5d7;;
+    box-shadow:2px 2px 2px 2px #ddfffc;
+    border: 1px 1px black;
+    padding:4px;
+
+    font-family:'Times New Roman', Times, serif;
+    max-width:max-content;
+    max-height:max-content;
+}
+
+/* DROPDOWN MENU STYLING */
+
+#selectedMonth {
+    background-color: #eeb5d7;;
+    box-shadow:2px 2px 2px 2px #ddfffc;
+    border: 1px solid black;
+    padding:4px;
+
+    font-family:'Times New Roman', Times, serif;
+    max-width:max-content;
+    max-height:max-content;
+    cursor: pointer;
+}
+
+#dropdownMenu {
+    position: relative;
+    display: inline-block;
+}
+
+#monthDropdown {
+    
+   display:none;
+
+    /* Scroll bar */
+    max-height: 100px;
+    overflow-y: scroll;
+
+    background-color: #eea6d1ec;
+    box-shadow:2px 2px 2px 2px #ddfffc;
+    padding:4px;
+    border: 1px solid black;
+
+    position: absolute;
+
+    font-family:'Times New Roman', Times, serif;
+    max-width:max-content;
+
+    margin: 0;
+    
+    list-style:none;
+    top:100%;
+}
+
+/* Each li in the dropdown menu*/
+#monthDropdown li{
+    padding:2px;
+    cursor: pointer;
+}
+
+#monthDropdown li:hover {
+    background-color: #eee7f0f1;
+    border: 1px solid black;
+}
